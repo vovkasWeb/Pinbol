@@ -76,7 +76,7 @@
                                     c: "BG",
                                     p: {name: "bg", x: -1, y: 1, "scale.x": 4.76, "scale.y": 5.47, image: "bg/bg.jpg"}
                                 }]
-                            }, {
+                            },{
                                 c: "Trigger",
                                 p: {
                                     dataPath: "game.currentScene.isLeftPanelTurnedOn",
@@ -87,10 +87,32 @@
                                     xShift: 76,
                                     isApplyInteractivity: !1
                                 },
-                                ":": [{
-                                    c: "Sprite",
-                                    p: {x: -230, y: -590, rotation: .320, alpha: 1, image: "bg/bg-flowers.png"}
-                                }]
+                                ":": [
+                                    {
+                                        c: "OrientationTrigger",
+                                        p: {
+                                            name: "flowers-mobile-scaling",
+                                            portraitScaleX: 0.7, // Уменьшаем масштаб по X до 70% в портретной ориентации
+                                            portraitScaleY: 0.7, // Уменьшаем масштаб по Y до 70% в портретной ориентации
+                                            portraitX: -20,     // Ближе к центру
+                                            portraitY: -250     // Выше
+                                        },
+                                        ":": [
+                                            {
+                                                c: "Sprite",
+                                                p: {
+                                                    x: -230,
+                                                    y: -590,
+                                                    rotation: .320,
+                                                    alpha: 1,
+                                                    image: "bg/bg-flowers.png",
+                                                    "scale.x": 1, // Базовый масштаб (можно убрать, если не нужен)
+                                                    "scale.y": 1  // Базовый масштаб (можно убрать, если не нужен)
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
                             }, {
                                 c: "Resizer",
                                 p: {name: "left-panel-btn", relativeX: !0, xPos: -.5},
@@ -165,55 +187,8 @@
                                 },
                                 ":": [{
                                     c: "OrientationTrigger",
-                                    p: {name: "left-part", portraitX: 525, portraitY: 17},
+                                    p: {name: "left-part", portraitX: 300, portraitY: 17},
                                     ":": [{
-                                        c: "Text",
-                                        p: {
-                                            x: -774,
-                                            y: -345,
-                                            translatableText: "plinko.time",
-                                            "style.fontSize": 22,
-                                            verticalAlign: "center",
-                                            "style.fontWeight": "bold",
-                                            maxWidth: 108
-                                        }
-                                    }, {
-                                        c: "Text",
-                                        p: {
-                                            x: -638,
-                                            y: -345,
-                                            translatableText: "plinko.bet_history",
-                                            "style.fontSize": 22,
-                                            verticalAlign: "center",
-                                            "style.fontWeight": "bold",
-                                            maxWidth: 108
-                                        }
-                                    }, {
-                                        c: "Text",
-                                        p: {
-                                            x: -496,
-                                            y: -345,
-                                            translatableText: "plinko.payout",
-                                            "style.fontSize": 22,
-                                            verticalAlign: "center",
-                                            "style.fontWeight": "bold",
-                                            maxWidth: 108
-                                        }
-                                    }, {
-                                        c: "Text",
-                                        p: {
-                                            x: -335,
-                                            y: -345,
-                                            translatableText: "plinko.profit",
-                                            "style.fontSize": 22,
-                                            verticalAlign: "center",
-                                            "style.fontWeight": "bold",
-                                            maxWidth: 108
-                                        }
-                                    }, {
-                                        c: "Sprite",
-                                        p: {x: -821, y: -323, "scale.x": 5.4, image: "ui/line.png"}
-                                    }, {
                                         c: "ResultList",
                                         p: {name: "resultList", x: -892, y: -293}
                                     }, {
@@ -472,7 +447,7 @@
                                                             p: {
                                                                 name: "autoplayNumberInput",
                                                                 x: 19,
-                                                                y: 12,
+                                                                y: 13,
                                                                 textView: "counter-text",
                                                                 dataPath: "game.data.autoplayCount",
                                                                 valuesList: "10,20,30,50,70,100,150,200,250,300,400,500,600,700,800,900,1000"
@@ -496,9 +471,7 @@
                                                                 x: 1,
                                                                 y: -23,
                                                                 "scale.x": 2.2,
-                                                                "scale.y": 1.52,
-                                                                image: "WHITE",
-                                                                tint: 6440096
+                                                                "scale.y": 1.52
                                                             }
                                                         }, {
                                                             c: "Sprite",
@@ -507,9 +480,7 @@
                                                                 x: 1,
                                                                 y: 22,
                                                                 "scale.x": 2.2,
-                                                                "scale.y": 1.5,
-                                                                image: "WHITE",
-                                                                tint: 6440096
+                                                                "scale.y": 1.5
                                                             }
                                                         }, {
                                                             c: "Trigger",
@@ -1321,7 +1292,16 @@
                                                     leftWidth: 25,
                                                     rightWidth: 25,
                                                     topHeight: 25,
-                                                    bottomHeight: 25
+                                                    bottomHeight: 25,
+                                                    filters: [
+                                                        {
+                                                            c: "BlurFilter",
+                                                            p: {
+                                                                blur: 12,
+                                                                quality: 4
+                                                            }
+                                                        }
+                                                    ]
                                                 },
                                                 ":": [{
                                                     c: "Fill",
@@ -1331,7 +1311,6 @@
                                                         "scale.x": 3.74,
                                                         "scale.y": .23,
                                                         image: "ui/stars-pattern.png",
-                                                        tint: 16764160,
                                                         verticesX: 4,
                                                         xRepeat: 3.74,
                                                         yRepeat: .23,
@@ -1439,8 +1418,8 @@
                                                         text: "0.123123",
                                                         "style.fontSize": 20,
                                                         verticalAlign: "center",
-                                                        "style.fill": "#FFFFFF",
-                                                        maxWidth: 141,
+                                                        "style.fill": "#ffffff",
+                                                        maxWidth: 130,
                                                         dataPath: "this.parent.chance",
                                                         refreshInterval: 0
                                                     }
@@ -2158,21 +2137,50 @@
                         },
                         ":": [{
                             c: "Sprite",
-                            p: {name: "lose-bg", x: 447, y: -16, image: "ui/profit-bg.png", tint: 2527919},
+                            p: {name: "1x-bg", x: 447, y: -16, image: "ui/profit-bg.png"},
                             ":": [{
                                 c: "MoneyLabel",
                                 p: {
                                     name: "win",
                                     x: 105,
                                     y: 15,
-                                    text: "%d %s",
+                                    text: "",
+                                    //text: "%d %s",
                                     "style.fontSize": 21,
                                     verticalAlign: "center",
                                     "style.letterSpacing": 1,
                                     maxWidth: 170,
-                                    dataPath: "this.parent.parent.data.win",
+                                    // dataPath: "this.parent.parent.data.win",
+                                    dataPath: "",
                                     refreshInterval: 1e5,
-                                    template: "%d %s",
+                                    template: "",
+                                    //template: "%d %s",
+                                    isNumeric: !0,
+                                    plusMinus: !0,
+                                    decimalsCount: 2,
+                                    dataPath2: "game.data.currency"
+                                }
+                            }]
+                        },{
+                            c: "Sprite",
+                            p: {name: "lose-bg", x: 447, y: -16, image: "ui/profit-bg-lose.png"},
+                            ":": [{
+                                c: "MoneyLabel",
+                                p: {
+                                    name: "win",
+                                    x: 105,
+                                    y: 15,
+                                    text: "",
+                                    //text: "%d %s",
+                                    "style.fontSize": 21,
+                                    verticalAlign: "center",
+                                    "style.letterSpacing": 1,
+                                    maxWidth: 170,
+                                    //dataPath: "this.parent.parent.data.win",
+                                    dataPath: "",
+                                    refreshInterval: 1e5,
+                                    //template: "%d %s",
+                                    template: "",
                                     isNumeric: !0,
                                     plusMinus: !0,
                                     decimalsCount: 2,
@@ -2181,77 +2189,31 @@
                             }]
                         }, {
                             c: "Sprite",
-                            p: {name: "win-bg", x: 447, y: -16, image: "ui/profit-bg.png", tint: 16292380},
+                            p: {name: "win-bg", x: 447, y: -16, image: "ui/profit-bg-win.png"},
                             ":": [{
                                 c: "MoneyLabel",
                                 p: {
                                     name: "win",
                                     x: 105,
                                     y: 15,
-                                    text: "%d %s",
+                                    // text: "%d %s",
+                                    text: "",
                                     "style.fontSize": 21,
                                     verticalAlign: "center",
                                     "style.fill": "#FFFFFF",
                                     "style.letterSpacing": 1,
                                     maxWidth: 171,
-                                    dataPath: "this.parent.parent.data.win",
+                                    //dataPath: "this.parent.parent.data.win",
+                                    dataPath: "",
                                     refreshInterval: 1e5,
-                                    template: "%d %s",
+                                    // template: "%d %s",
+                                    template: "",
                                     isNumeric: !0,
                                     plusMinus: !0,
                                     decimalsCount: 2,
                                     dataPath2: "game.data.currency"
                                 }
                             }]
-                        }, {
-                            c: "Label",
-                            p: {
-                                name: "payout",
-                                x: 397,
-                                "scale.x": .9090909090909091,
-                                "scale.y": .9090909090909091,
-                                text: "1235.88×",
-                                "style.fontSize": 21,
-                                verticalAlign: "center",
-                                maxWidth: 80,
-                                dataPath: "this.parent.data.payout",
-                                refreshInterval: 1e5,
-                                // template: "%d×",
-                                template: "%d" + String.fromCharCode(215),
-                                isNumeric: !0,
-                                decimalsCount: 1
-                            }
-                        }, {
-                            c: "Label",
-                            p: {
-                                name: "time",
-                                x: 113,
-                                text: "12:28:03",
-                                "style.fontSize": 21,
-                                verticalAlign: "center",
-                                dataPath: "this.parent.data.time",
-                                refreshInterval: 1e5
-                            }
-                        }, {
-                            c: "MoneyLabel",
-                            p: {
-                                name: "bet",
-                                x: 258,
-                                y: -1,
-                                "scale.x": .8294930875576036,
-                                "scale.y": .8294930875576036,
-                                text: "123123123123%d %s",
-                                "style.fontSize": 21,
-                                verticalAlign: "center",
-                                "style.letterSpacing": 1,
-                                maxWidth: 180,
-                                dataPath: "this.parent.data.bet",
-                                refreshInterval: 1e5,
-                                template: "%d %s",
-                                isNumeric: !0,
-                                decimalsCount: 2,
-                                dataPath2: "game.data.currency"
-                            }
                         }]
                     },
                     spark: {c: "ParticleSimple", p: {name: "spark", x: 640, y: 360, image: "ui/spark.png"}},
@@ -5222,6 +5184,8 @@
                     "ui/play-btn-h.png": {e: ".png_80_80.webp", f_e: ".f.png_80_90.png"},
                     "ui/play-btn.png": {e: ".png_80_80.webp", f_e: ".f.png_90_100.png"},
                     "ui/profit-bg.png": {e: ".png_100.webp", f_e: ".f.png_80_90.png"},
+                    "ui/profit-bg-lose.png": {e: ".png_100.webp", f_e: ".f.png_80_90.png"},
+                    "ui/profit-bg-win.png": {e: ".png_100.webp", f_e: ".f.png_80_90.png"},
                     "ui/provability/provability-btn-h.png": {e: ".png_80_90.png"},
                     "ui/provability/provability-btn.png": {e: ".png_80_90.png"},
                     "ui/select-btn-d.png": {e: ".png_100.webp", f_e: ".f.png_90_100.png"},
