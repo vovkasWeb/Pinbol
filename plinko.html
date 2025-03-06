@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plinko</title>
+    <meta content='yes' name='apple-mobile-web-app-capable'>
+    <link href='data:,' rel='shortcut icon'>
+    <meta content='user-scalable=no, width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover' name='viewport'>
+    <script type='text/javascript'>
+        const searchParams = new URLSearchParams(window.location.search);
+
+        const sessionId = searchParams.has('sessionid') ? searchParams.get('sessionid') : ''
+        const nogsserver = searchParams.has('nogsserver') ? searchParams.get('nogsserver').toLowerCase() : ''
+        const nogslang = searchParams.has('nogslang') ? searchParams.get('nogslang').toLowerCase() : 'en'
+        const nogscurrency = searchParams.has('nogscurrency') ? searchParams.get('nogscurrency') : 'USD'
+        const lobbyurl = searchParams.has('lobbyurl') ? searchParams.get('lobbyurl') : '';
+        const countrycode = searchParams.has('countrycode') ? searchParams.get('countrycode') : '';
+
+        var available_languages = ["bg","de","el","en","es","fi","fr","id","it","ja","ko","nl","nn","pl","pt","ro","ru","sv","th","tr","vi","zh"];
+        var lang = "en";
+        if (available_languages.includes(nogslang.toLowerCase())) {
+            lang = nogslang.toLowerCase();
+        }
+
+        window.__OPTIONS__ = {
+            "server_id": "real",
+            "env": "production",
+            "csrfTokenHeaderName": "X-CSRF-Token",
+            // "csrfTokenHeaderValue": "nCcVonZNIQez3fDMXD2-88d9piNxWoXlSSjjDP-MM9_emJZhZPVeTN1ESmQDI8gAWVNA73ZvLuMFQMyHEebNFw",//sessionid
+            "csrfTokenHeaderValue": sessionId,
+            "play_token": "b19765e4-e3c4-48e3-96be-f2b2800f38c5",
+            "game": "casual/plinko",
+            "identifier": "Plinko",
+            "title": "Plinko",
+            "currency": nogscurrency,
+            "cache_id": "6496a2ca5be71b589c2c7332408c80057ca18ab57286e9709e6c2b25cc22c0d3",
+            "cache_player_id": "2555e51c09238ccf15355685e8ac10ddc8d90d7e28d9c1d6b6c4ca81f2ad0408",
+            "locale": lang,
+            "api": nogsserver + 'logic/bgaming/plinko',
+            "rules_url": "rules/" + lang.toLowerCase() + "/Plinko.json",
+            "deposit_url": null,
+            "games_page_url": lobbyurl,
+            "history_url": null,
+            "lobby_launch_url": "",
+            "game_page_url": "",
+            "websocket_url": "",
+            "drops_websocket_url": "",
+            "ui": {
+                "home_button": true,
+                "full_screen_prompt": true,
+                "logo": "standard",
+                "skin": "basic",
+                "skins": ["basic"],
+                "brand_logo": null,
+                "brand": {
+                    "name": "",
+                    "logo": null,
+                    "logo_in_game": null
+                },
+                "autospins_dialog": "standard",
+                "autospin_values": ["10", "25", "50", "100", "250", "500", "750", "1000", "∞"],
+                "gamble_enabled": true,
+                "show_rtp_in_rules": true
+            },
+            "resources_path": "html/Plinko",
+            "license_rules": {},
+            "custom": {},
+            "actions": {
+                "deposit": null,
+                "return": lobbyurl,
+                "history": null
+            },
+            "show_paytable": null,
+            "actual_currency_rate": 0.0,
+            "games_loader_source": "html/Plinko/loader.js?1738329227",
+            "game_bundle_source": "html/Plinko/bundle.js",
+            "provable_fair": {
+                "verify_url": nogsserver + 'logic/bgaming/plinko/verify',
+            },
+            "math": {
+                "rtp": {
+                    "main": 98.91,
+                    "min_rtp": 98.91,
+                    "max_rtp": 99.16
+                },
+                "max_multiplier": 1000.0
+            },
+            "loyalty_system_options": {
+                "currency_exponent": 2,
+                "player_id": 163245611,
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJwbGF5ZXJfaWQiOjE2MzI0NTYxMSwiZW52IjoiY3VyYWNhbyIsInNlcnZlcl9pZCI6ImRlbW8iLCJicmFuZF9uYW1lIjpudWxsfQ.jHu9tPGtZdd3WyvYqyrjdFbfjda2qLe4af4mhYMNm58"
+            },
+            "rules": {
+                "min_bet": 100,
+                "max_bet": 10000,
+                "currency": {
+                    "code": nogscurrency,
+                    "symbol": nogscurrency,
+                    "subunits": 100,
+                    "exponent": 2
+                }
+            },
+            "version": "1.0.0",
+            "growthbook_flags": {},
+            "lobby_options": {
+                "url": "",
+                "show_lobby": false,
+                "show_game_list": false
+            }
+        }
+
+        window.checkHash = function (hash1, hash2) {
+            if (hash1 === null || hash2 === null) return;
+            if (hash1 !== window.localStorage.getItem("hash")) {
+                for (let key in window.localStorage){
+                    if (key.includes("plinko.softswiss.com")) {
+                        window.localStorage.removeItem(key)
+                    }
+                }
+                window.__OPTIONS__.cache_player_id = hash1;
+            }
+            window.localStorage.setItem("hash", hash2);
+        }
+    </script>
+    <script type='text/javascript'>
+        window.onbeforeunload = function(event) {
+            fetch(window.__OPTIONS__.api, {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    command: 'close_session'
+                })
+            })
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000000
+        }
+    </style>
+    <style>
+        .preloader, .preloader_figure {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        .preloader {
+            overflow: visible;
+            padding-top: 2em;
+            height: 0;
+            width: 2em;
+        }
+
+        .preloader_figure {
+            height: 0;
+            width: 0;
+            box-sizing: border-box;
+            border: 0 solid #ff2c2c;
+            border-radius: 50%;
+            -webkit-animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+            animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        .preloader_label {
+            font-family: "Consolas", "Courier", monospace;
+            float: left;
+            margin-left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            margin: 0.5em 0 0 50%;
+            font-size: 0.875em;
+            letter-spacing: 0.1em;
+            line-height: 1.5em;
+            color: #ff2c2c;
+            white-space: nowrap;
+            -webkit-animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+            animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        @-webkit-keyframes loader-figure {
+            0% {
+                height: 0;
+                width: 0;
+            }
+
+            30% {
+                height: 2em;
+                width: 2em;
+                border-width: 1em;
+                opacity: 1;
+            }
+
+            100% {
+                height: 2em;
+                width: 2em;
+                border-width: 0;
+                opacity: 0;
+            }
+        }
+
+        @keyframes loader-figure {
+            0% {
+                height: 0;
+                width: 0;
+            }
+
+            30% {
+                height: 2em;
+                width: 2em;
+                border-width: 1em;
+                opacity: 1;
+            }
+
+            100% {
+                height: 2em;
+                width: 2em;
+                border-width: 0;
+                opacity: 0;
+            }
+        }
+
+        @-webkit-keyframes loader-label {
+            0% {
+                opacity: 0.35;
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.35;
+            }
+        }
+
+        @keyframes loader-label {
+            0% {
+                opacity: 0.35;
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.35;
+            }
+        }
+    </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-1TYS5KPFP4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        let options = {};
+        window.user_id = 163245611;
+        options['user_id'] = window.user_id;
+        gtag('config', 'G-1TYS5KPFP4', options);
+    </script>
+    <script src="wrapper.js"></script>
+    <script src="analytics/amplitude.js?game=Plinko"></script>
+    <script src='replays.js'></script>
+</head>
+<body>
+<div class='preloader'>
+    <div class='preloader_figure'></div>
+    <p class='preloader_label'>Loading
+    </p>
+</div>
+<script src="html/Plinko/loader.js?1738329227" crossorigin="anonymous"></script>
+<script type='text/javascript'>
+    document.write('\x3Cscript src="' + window.__OPTIONS__.game_bundle_source + '" crossorigin="anonymous">\x3C/script>');
+</script>
+<script src='game-client.js'></script>
+<!--<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"90a9f6058ca0e173","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.1.0","token":"da78c5c3d3444add894b2683f849c20e"}' crossorigin="anonymous"></script>-->
+</body>
+</html>
