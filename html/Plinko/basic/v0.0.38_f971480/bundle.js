@@ -92,22 +92,22 @@
                                         c: "OrientationTrigger",
                                         p: {
                                             name: "flowers-mobile-scaling",
-                                            portraitScaleX: 0.7, // Уменьшаем масштаб по X до 70% в портретной ориентации
-                                            portraitScaleY: 0.7, // Уменьшаем масштаб по Y до 70% в портретной ориентации
-                                            portraitX: -20,     // Ближе к центру
-                                            portraitY: -250     // Выше
+                                            portraitScaleX: 0.7,
+                                            portraitScaleY: 0.7,
+                                            portraitX: -15,
+                                            portraitY: -220
                                         },
                                         ":": [
                                             {
                                                 c: "Sprite",
                                                 p: {
-                                                    x: -230,
-                                                    y: -590,
+                                                    x: -250,
+                                                    y: -600,
                                                     rotation: .320,
                                                     alpha: 1,
                                                     image: "bg/bg-flowers.png",
-                                                    "scale.x": 1, // Базовый масштаб (можно убрать, если не нужен)
-                                                    "scale.y": 1  // Базовый масштаб (можно убрать, если не нужен)
+                                                    "scale.x": 1,
+                                                    "scale.y": 1
                                                 }
                                             }
                                         ]
@@ -242,7 +242,6 @@
                                                 c: "Sprite",
                                                 p: {x: -821, y: -323, "scale.x": 5.4, image: "ui/line.png"}
                                             }, ]
-
                                         }, {
                                         c: "ResultList",
                                         p: {name: "resultList", x: -892, y: -293}
@@ -1499,7 +1498,7 @@
                                                     y: 57,
                                                     "scale.x": .5,
                                                     "scale.y": .5,
-                                                    "pivot.x": 204,
+                                                    "pivot.x": 350,
                                                     "pivot.y": 118,
                                                     image: "ui/logo.png"
                                                 },
@@ -2198,13 +2197,36 @@
                         },
                         ":": [{
                             c: "Sprite",
-                            p: {name: "lose-bg", x: 447, y: -16, image: "ui/profit-bg.png", tint: 2527919},
+                            p: {name: "1x-bg", x: 447, y: -16, image: "ui/profit-bg-lose.png"},
                             ":": [{
                                 c: "MoneyLabel",
                                 p: {
                                     name: "win",
                                     x: 105,
-                                    y: 15,
+                                    y: 17,
+                                    text: "%d %s",
+                                    "style.fontSize": 21,
+                                    verticalAlign: "center",
+                                    "style.letterSpacing": 1,
+                                    maxWidth: 170,
+                                    dataPath: "this.parent.parent.data.win",
+                                    refreshInterval: 1e5,
+                                    template: "%d %s",
+                                    isNumeric: !0,
+                                    plusMinus: !0,
+                                    decimalsCount: 2,
+                                    dataPath2: "game.data.currency"
+                                }
+                            }]
+                        },{
+                            c: "Sprite",
+                            p: {name: "lose-bg", x: 447, y: -16, image: "ui/profit-bg-lose.png"},
+                            ":": [{
+                                c: "MoneyLabel",
+                                p: {
+                                    name: "win",
+                                    x: 105,
+                                    y: 17,
                                     text: "%d %s",
                                     "style.fontSize": 21,
                                     verticalAlign: "center",
@@ -2221,13 +2243,13 @@
                             }]
                         }, {
                             c: "Sprite",
-                            p: {name: "win-bg", x: 447, y: -16, image: "ui/profit-bg.png", tint: 16292380},
+                            p: {name: "win-bg", x: 447, y: -16, image: "ui/profit-bg-win.png"},
                             ":": [{
                                 c: "MoneyLabel",
                                 p: {
                                     name: "win",
                                     x: 105,
-                                    y: 15,
+                                    y: 17,
                                     text: "%d %s",
                                     "style.fontSize": 21,
                                     verticalAlign: "center",
@@ -2244,54 +2266,87 @@
                                 }
                             }]
                         }, {
-                            c: "Label",
-                            p: {
-                                name: "payout",
-                                x: 397,
-                                "scale.x": .9090909090909091,
-                                "scale.y": .9090909090909091,
-                                text: "1235.88×",
-                                "style.fontSize": 21,
-                                verticalAlign: "center",
-                                maxWidth: 80,
-                                dataPath: "this.parent.data.payout",
-                                refreshInterval: 1e5,
-                                // template: "%d×",
-                                template: "%d" + String.fromCharCode(215),
-                                isNumeric: !0,
-                                decimalsCount: 1
-                            }
+                            "c": "OrientationTrigger",
+                            "p": {
+                                "name": "payout-mobile",
+                                "landscapeAlpha": 0,
+                                "portraitAlpha": 1,
+                                "portraitX": 397
+                            },
+                            ":": [{
+                                "c": "Label",
+                                "p": {
+                                    "name": "payout",
+                                    "x": 0,
+                                    "y": 0,
+                                    "scale.x": .9090909090909091,
+                                    "scale.y": .9090909090909091,
+                                    "text": "1235.88×",
+                                    "style.fontSize": 21,
+                                    "verticalAlign": "center",
+                                    maxWidth: 80,
+                                    "dataPath": "this.parent.parent.data.payout",
+                                    "refreshInterval": 1e5,
+                                    "template": "%d" + String.fromCharCode(215),
+                                    "isNumeric": true,
+                                    "decimalsCount": 1
+                                }
+                            }]
                         }, {
-                            c: "Label",
-                            p: {
-                                name: "time",
-                                x: 113,
-                                text: "12:28:03",
-                                "style.fontSize": 21,
-                                verticalAlign: "center",
-                                dataPath: "this.parent.data.time",
-                                refreshInterval: 1e5
-                            }
+                            "c": "OrientationTrigger",
+                            "p": {
+                                "name": "time-mobile",
+                                "landscapeAlpha": 0,
+                                "portraitAlpha": 1,
+                                "portraitX": 113,
+                                "portraitY": 0
+                            },
+                            ":": [
+                                {
+                                    "c": "Label",
+                                    "p": {
+                                        "name": "time",
+                                        "x": 0,
+                                        "text": "12:28:03",
+                                        "style.fontSize": 21,
+                                        "verticalAlign": "center",
+                                        "dataPath": "this.parent.parent.data.time",
+                                        "refreshInterval": 1e5
+                                    }
+                                }
+                            ]
                         }, {
-                            c: "MoneyLabel",
-                            p: {
-                                name: "bet",
-                                x: 258,
-                                y: -1,
-                                "scale.x": .8294930875576036,
-                                "scale.y": .8294930875576036,
-                                text: "123123123123%d %s",
-                                "style.fontSize": 21,
-                                verticalAlign: "center",
-                                "style.letterSpacing": 1,
-                                maxWidth: 180,
-                                dataPath: "this.parent.data.bet",
-                                refreshInterval: 1e5,
-                                template: "%d %s",
-                                isNumeric: !0,
-                                decimalsCount: 2,
-                                dataPath2: "game.data.currency"
-                            }
+                            "c": "OrientationTrigger",
+                            "p": {
+                                "name": "bet-mobile",
+                                "landscapeAlpha": 0,
+                                "portraitAlpha": 1,
+                                "portraitX": 258,
+                                "portraitY": -1
+                            },
+                            ":": [
+                                {
+                                    "c": "MoneyLabel",
+                                    "p": {
+                                        "name": "bet",
+                                        "x": 0,
+                                        "y": 0,
+                                        "scale.x": .8294930875576036,
+                                        "scale.y": .8294930875576036,
+                                        "text": "123123123123%d %s",
+                                        "style.fontSize": 21,
+                                        "verticalAlign": "center",
+                                        "style.letterSpacing": 1,
+                                        "maxWidth": 180,
+                                        "dataPath": "this.parent.parent.data.bet",
+                                        "refreshInterval": 1e5,
+                                        "template": "%d %s",
+                                        "isNumeric": !0,
+                                        "decimalsCount": 2,
+                                        "dataPath2": "game.data.currency"
+                                    }
+                                }
+                            ]
                         }]
                     },
 
