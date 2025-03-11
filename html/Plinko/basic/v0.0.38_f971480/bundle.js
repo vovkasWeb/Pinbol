@@ -982,7 +982,7 @@
                                                         translatableText: "plinko.balance",
                                                         "style.fontSize": 27,
                                                         verticalAlign: "center",
-                                                        "style.fill": "#588AF0",
+                                                        "style.fill": "#7F7F7F",
                                                         "style.fontWeight": "bold",
                                                         "style.letterSpacing": 1,
                                                         textTransform: 1,
