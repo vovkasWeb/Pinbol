@@ -1390,7 +1390,7 @@
                                                         translatableText: "plinko.win",
                                                         "style.fontSize": 27,
                                                         verticalAlign: "center",
-                                                        "style.fill": "#FFFFFF",
+                                                        "style.fill": "#0E0E21",
                                                         "style.fontWeight": "bold",
                                                         "style.letterSpacing": 1,
                                                         maxWidth: 225,
