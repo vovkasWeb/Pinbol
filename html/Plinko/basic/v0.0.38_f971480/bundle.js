@@ -66,7 +66,7 @@
             t.exports = {
                 scenes: {
                     main: {
-                        c: "MainMenu", p: {backgroundColor: 1713247}, ":": [{
+                        c: "MainMenu", p: {backgroundColor: 592913}, ":": [{
                             c: "Resizer",
                             p: {name: "middle", relativeX: !0, xPos: .5, relativeY: !0, yPos: .5},
                             ":": [{
