@@ -176,111 +176,105 @@
                             },
                                 //table start
                                 {
-                                c: "Trigger",
-                                p: {
-                                    name: "left-panel-switcher",
-                                    x: 1,
-                                    y: 1,
-                                    dataPath: "game.currentScene.isLeftPanelVisible",
-                                    pow: .05,
-                                    damp: .7,
-                                    alphaShift: -.97,
-                                    xShift: -900
-                                },
-                                ":": [{
+                                    c: "Trigger",
+                                    p: {
+                                        name: "left-panel-switcher",
+                                        x: 1,
+                                        y: 1,
+                                        dataPath: "game.currentScene.isLeftPanelVisible",
+                                        pow: .05,
+                                        damp: .7,
+                                        alphaShift: -.97,
+                                        xShift: -900
+                                    },
+                                    ":": [{
                                         c: "OrientationTrigger",
                                         p: {name: "left-part", portraitX: 525, portraitY: 17},
                                         ":": [{
-                                            c: "OrientationTrigger",
-                                            p: { landscapeAlpha: 0, portraitAlpha: 1 },
-                                            ":": [{
-                                                c: "Text",
-                                                p: {
-                                                    x: -774,
-                                                    y: -345,
-                                                    translatableText: "plinko.time",
-                                                    "style.fontSize": 22,
-                                                    verticalAlign: "center",
-                                                    "style.fontWeight": "bold",
-                                                    maxWidth: 108
-                                                }
-                                            },{
-                                                c: "Text",
-                                                p: {
-                                                    x: -638,
-                                                    y: -345,
-                                                    translatableText: "plinko.bet_history",
-                                                    "style.fontSize": 22,
-                                                    verticalAlign: "center",
-                                                    "style.fontWeight": "bold",
-                                                    maxWidth: 108
-                                                }
-                                            }, {
-                                                c: "Text",
-                                                p: {
-                                                    x: -496,
-                                                    y: -345,
-                                                    translatableText: "plinko.payout",
-                                                    "style.fontSize": 22,
-                                                    verticalAlign: "center",
-                                                    "style.fontWeight": "bold",
-                                                    maxWidth: 108
-                                                }
-                                            }, {
-                                                c: "Text",
-                                                p: {
-                                                    x: -335,
-                                                    y: -345,
-                                                    translatableText: "plinko.profit",
-                                                    "style.fontSize": 22,
-                                                    verticalAlign: "center",
-                                                    "style.fontWeight": "bold",
-                                                    maxWidth: 108
-
-                                                }
-                                            },{
-                                                c: "Sprite",
-                                                p: {x: -821, y: -323, "scale.x": 5.4, image: "ui/line.png"}
-                                            }, ]
-                                        }, {
-                                        c: "ResultList",
-                                        p: {name: "resultList", x: -892, y: -293}
-                                    }, {
-                                        c: "OrientationTrigger",
-                                        p: {landscapeY: 16, landscapeAlpha: 0, portraitX: -539, portraitY: -484},
-                                        ":": [{
-                                            c: "Sprite",
+                                            c: "Text",
                                             p: {
-                                                y: 57,
-                                                "scale.x": .5,
-                                                "scale.y": .5,
-                                                "pivot.x": 204,
-                                                "pivot.y": 118,
-                                                image: "ui/logo.png"
-                                            },
+                                                x: -774,
+                                                y: -345,
+                                                translatableText: "plinko.time",
+                                                "style.fontSize": 22,
+                                                verticalAlign: "center",
+                                                "style.fontWeight": "bold",
+                                                maxWidth: 108
+                                            }
+                                        }, {
+                                            c: "Text",
+                                            p: {
+                                                x: -638,
+                                                y: -345,
+                                                translatableText: "plinko.bet_history",
+                                                "style.fontSize": 22,
+                                                verticalAlign: "center",
+                                                "style.fontWeight": "bold",
+                                                maxWidth: 108
+                                            }
+                                        }, {
+                                            c: "Text",
+                                            p: {
+                                                x: -496,
+                                                y: -345,
+                                                translatableText: "plinko.payout",
+                                                "style.fontSize": 22,
+                                                verticalAlign: "center",
+                                                "style.fontWeight": "bold",
+                                                maxWidth: 108
+                                            }
+                                        }, {
+                                            c: "Text",
+                                            p: {
+                                                x: -335,
+                                                y: -345,
+                                                translatableText: "plinko.profit",
+                                                "style.fontSize": 22,
+                                                verticalAlign: "center",
+                                                "style.fontWeight": "bold",
+                                                maxWidth: 108
+                                            }
+                                        }, {
+                                            c: "Sprite",
+                                            p: {x: -821, y: -323, "scale.x": 5.4, image: "ui/line.png"}
+                                        }, {
+                                            c: "ResultList",
+                                            p: {name: "resultList", x: -892, y: -293}
+                                        }, {
+                                            c: "OrientationTrigger",
+                                            p: {landscapeY: 16, landscapeAlpha: 0, portraitX: -539, portraitY: -484},
                                             ":": [{
-                                                c: "Trigger",
+                                                c: "Sprite",
                                                 p: {
-                                                    dataPath: "game.casinoOptions.ui.logo_visible",
-                                                    isApplyInteractivity: !1
+                                                    y: 57,
+                                                    "scale.x": .5,
+                                                    "scale.y": .5,
+                                                    "pivot.x": 204,
+                                                    "pivot.y": 118,
+                                                    image: "ui/logo.png"
                                                 },
                                                 ":": [{
-                                                    c: "Sprite",
+                                                    c: "Trigger",
                                                     p: {
-                                                        x: 104,
-                                                        y: 182,
-                                                        alpha: .4,
-                                                        "scale.x": .5,
-                                                        "scale.y": .5,
-                                                        image: "ui/brand-logo.png"
-                                                    }
+                                                        dataPath: "game.casinoOptions.ui.logo_visible",
+                                                        isApplyInteractivity: !1
+                                                    },
+                                                    ":": [{
+                                                        c: "Sprite",
+                                                        p: {
+                                                            x: 104,
+                                                            y: 182,
+                                                            alpha: .4,
+                                                            "scale.x": .5,
+                                                            "scale.y": .5,
+                                                            image: "ui/brand-logo.png"
+                                                        }
+                                                    }]
                                                 }]
                                             }]
                                         }]
                                     }]
-                                }]
-
-                            }
+                                }
                             //table
 
                             , {
@@ -2265,6 +2259,55 @@
                                     dataPath2: "game.data.currency"
                                 }
                             }]
+                        },{
+                            c: "Label",
+                            p: {
+                                name: "time",
+                                x: 113,
+                                text: "12:28:03",
+                                "style.fontSize": 21,
+                                verticalAlign: "center",
+                                dataPath: "this.parent.data.time",
+                                refreshInterval: 1e5
+                            }
+                        },{
+                            c: "MoneyLabel",
+                            p: {
+                                name: "bet",
+                                x: 258,
+                                y: -1,
+                                "scale.x": .8294930875576036,
+                                "scale.y": .8294930875576036,
+                                text: "123123123123%d %s",
+                                "style.fontSize": 21,
+                                verticalAlign: "center",
+                                "style.letterSpacing": 1,
+                                maxWidth: 180,
+                                dataPath: "this.parent.data.bet",
+                                refreshInterval: 1e5,
+                                template: "%d %s",
+                                isNumeric: !0,
+                                decimalsCount: 2,
+                                dataPath2: "game.data.currency"
+                            }
+                        },{
+                            c: "Label",
+                            p: {
+                                name: "payout",
+                                x: 397,
+                                "scale.x": .9090909090909091,
+                                "scale.y": .9090909090909091,
+                                text: "1235.88×",
+                                "style.fontSize": 21,
+                                verticalAlign: "center",
+                                maxWidth: 80,
+                                dataPath: "this.parent.data.payout",
+                                refreshInterval: 1e5,
+                                // template: "%d×",
+                                template: "%d" + String.fromCharCode(215),
+                                isNumeric: !0,
+                                decimalsCount: 1
+                            }
                         }, {
                             "c": "OrientationTrigger",
                             "p": {
